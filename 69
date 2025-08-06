@@ -1,0 +1,86 @@
+// eCommerce User Website - React (Frontend) // Added: Product Listing Page (with filtering layout)
+
+import React from "react"; import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+const HomePage = () => { return ( <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-white"> <header className="p-4 shadow-md flex justify-between items-center"> <h1 className="text-2xl font-bold"> <Link to="/">69</Link> </h1> <nav className="space-x-4"> <Link to="/products">Products</Link> <Link to="/cart">Cart</Link> <Link to="/login">Login</Link> <select className="ml-4 border rounded px-2 py-1"> <option>EN</option> <option>BN</option> </select> <button className="ml-2">🌓</button> </nav> </header>
+
+<main className="p-4">
+    <section className="text-center">
+      <h2 className="text-3xl font-semibold mb-4">Welcome to Shop 69</h2>
+      <p className="text-gray-600 dark:text-gray-300">Inspired by Daraz & Amazon</p>
+    </section>
+
+    <section className="mt-10">
+      <h3 className="text-xl font-semibold mb-2">Featured Products</h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[1, 2, 3, 4].map((item) => (
+          <div key={item} className="border p-4 rounded shadow hover:shadow-lg">
+            <img
+              src={`https://via.placeholder.com/150`}
+              alt="Product"
+              className="w-full h-32 object-cover mb-2"
+            />
+            <h4 className="text-lg font-medium">Product {item}</h4>
+            <p className="text-sm text-gray-500">৳999</p>
+            <button className="mt-2 w-full bg-blue-600 text-white py-1 rounded">Add to Cart</button>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <footer className="mt-10 p-4 text-center text-sm text-gray-500">
+    &copy; {new Date().getFullYear()} Shop 69 — All rights reserved.
+  </footer>
+</div>
+
+); };
+
+const ProductsPage = () => { return ( <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-white"> <header className="p-4 shadow-md flex justify-between items-center"> <h1 className="text-2xl font-bold"> <Link to="/">69</Link> </h1> <nav className="space-x-4"> <Link to="/products">Products</Link> <Link to="/cart">Cart</Link> <Link to="/login">Login</Link> <select className="ml-4 border rounded px-2 py-1"> <option>EN</option> <option>BN</option> </select> <button className="ml-2">🌓</button> </nav> </header>
+
+<main className="p-4 md:flex">
+    {/* Sidebar Filters */}
+    <aside className="md:w-1/4 mb-4 md:mb-0">
+      <div className="border rounded p-4 bg-gray-50 dark:bg-gray-800">
+        <h3 className="font-semibold mb-2">Filters</h3>
+        <div className="mb-2">
+          <label className="block text-sm">Price Range</label>
+          <input type="range" min="0" max="10000" className="w-full" />
+        </div>
+        <div className="mb-2">
+          <label className="block text-sm">Category</label>
+          <select className="w-full border rounded p-1">
+            <option>All</option>
+            <option>Electronics</option>
+            <option>Fashion</option>
+            <option>Home</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+    {/* Product Grid */}
+    <section className="md:w-3/4 md:pl-6">
+      <h2 className="text-2xl font-semibold mb-4">All Products</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+          <div key={item} className="border p-4 rounded shadow hover:shadow-lg">
+            <img
+              src={`https://via.placeholder.com/150`}
+              alt="Product"
+              className="w-full h-32 object-cover mb-2"
+            />
+            <h4 className="text-lg font-medium">Product {item}</h4>
+            <p className="text-sm text-gray-500">৳{item * 199}</p>
+            <button className="mt-2 w-full bg-green-600 text-white py-1 rounded">Add to Cart</button>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</div>
+
+); };
+
+export default function App() { return ( <Router> <Routes> <Route path="/" element={<HomePage />} /> <Route path="/products" element={<ProductsPage />} /> </Routes> </Router> ); }
+
